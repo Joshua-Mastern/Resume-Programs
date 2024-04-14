@@ -1,0 +1,1 @@
+This program records all keyboard and mouse inputs and then replays them. I built it to see if it was capable of automating farming on a browser game called Grepolis. It was, and because it didn't rely on scripts interacting with the html it was undetectable.

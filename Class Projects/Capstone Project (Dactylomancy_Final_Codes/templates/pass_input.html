@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Password Input for Keystroke Analysis</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+	<style>
+		body {
+			background-color: #f5f5f5;
+			font-family: "Roboto", sans-serif;
+			font-size: 16px;
+			color: #333;
+		}
+
+		h1 {
+			text-align: center;
+			font-weight: 500;
+			font-size: 2rem;
+			margin-top: 2rem;
+			margin-bottom: 2rem;
+		}
+
+		form {
+			background-color: #fff;
+			max-width: 400px;
+			margin: 0 auto;
+			padding: 2rem;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+		}
+
+		label {
+			display: block;
+			margin-bottom: 1rem;
+			font-weight: 500;
+			font-size: 1.1rem;
+		}
+
+		input[type="text"],
+		input[type="password"] {
+			width: 100%;
+			padding: 1rem;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			margin-bottom: 1.5rem;
+			font-size: 1.1rem;
+		}
+
+		input[type="submit"] {
+			background-color: #333;
+			color: #fff;
+			padding: 1rem;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 1.1rem;
+			transition: background-color 0.3s ease-in-out;
+			display: block;
+			margin: 0 auto;
+			width: 100%;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #222;
+		}
+
+		input[type="submit"]:focus {
+			outline: none;
+			border-color: #222;
+		}
+
+		p {
+			text-align: center;
+			font-size: 1.1rem;
+			margin-bottom: 1rem;
+		}
+
+		#counter {
+			font-weight: 500;
+		}
+
+		form {
+			background-color: #fff;
+			width: 50%;
+			margin: 0 auto;
+			padding: 2rem;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+		}
+
+		button[type="submit"] {
+			background-color: #333;
+			color: #fff;
+			padding: 1rem;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 1.1rem;
+			transition: background-color 0.3s ease-in-out;
+			display: block;
+			margin: 0 auto;
+			width: 100%;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #222;
+		}
+
+		button[type="submit"]:focus {
+			outline: none;
+			border-color: #222;
+		}
+
+
+
+	</style>
+  <body>
+    <h1>Password Input for Keystroke Analysis</h1>
+    <p>Type your password in the box below and press "Enter" when done. You must type it 20 times.</p>
+    <input type="text" id="textbox" onkeydown="return handleEnter(event)">
+    <p id="counter">You have entered 0 out of 20 times.</p>
+	<form method="GET" action="/test">
+		<button>Begin</button>
+	</form>
+	  
+    <script>
+      var count = 0;
+      function handleEnter(event) {
+        if (event.keyCode === 13) {
+          var textbox = document.getElementById("textbox");
+          var counter = document.getElementById("counter");
+          if (count < 20) {
+            count++;
+            counter.innerHTML = "You have entered " + count + " out of 20 times.";
+            textbox.value = "";
+			if (count == 20) {
+				counter.innerHTML = "You have reached the maximum number of entries.";
+			}
+
+            return false;
+          }
+        //   else {
+        //     textbox.value = "";
+        //     counter.innerHTML = "You have reached the maximum number of entries.";
+        //     return false;
+        //   }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dactylomancy - Login</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+	<style>
+		body {
+			background-color: #f5f5f5;
+			font-family: "Roboto", sans-serif;
+			font-size: 16px;
+			color: #333;
+		}
+
+		h1 {
+			text-align: center;
+			font-weight: 500;
+			font-size: 2rem;
+			margin-top: 2rem;
+			margin-bottom: 2rem;
+		}
+
+		form {
+			background-color: #fff;
+			max-width: 400px;
+			margin: 0 auto;
+			padding: 2rem;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+		}
+
+		label {
+			display: block;
+			margin-bottom: 1rem;
+			font-weight: 500;
+			font-size: 1.1rem;
+		}
+
+		input[type="text"],
+		input[type="password"] {
+			width: 100%;
+			padding: 1rem;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			margin-bottom: 1.5rem;
+			font-size: 1.1rem;
+		}
+
+		.btn {
+			background-color: #333;
+			color: #fff;
+			padding: 1rem;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 1.1rem;
+			transition: background-color 0.3s ease-in-out;
+			display: block;
+			margin: 0 auto;
+			width: 100%;
+		}
+
+		.btn:hover {
+			background-color: #222;
+		}
+
+		.btn:focus {
+			outline: none;
+			border-color: #222;
+		}
+
+		.password-field {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<h1>Dactylomancy</h1>
+	<form action="/login" method="POST">
+		<label for="uname">Username</label>
+		<input type="text" placeholder="Enter Username" name="uname" required>
+
+		<div class="password-field">
+			<label for="psw">Password</label>
+			<input type="text" id="my-input" onkeydown="on_press" placeholder="Enter Password" name="psw" required>
+			<script>
+				var input = document.getElementById("my-input");
+
+				var typingTimer;
+				var doneTypingInterval = 1000; // 1 second
+				
+				var last = new Date().getTime();
+				var nowTime;
+				var num;
+				var numStr;
+				var log = "";
+
+				// Listen for keyup events on the input field
+				input.addEventListener("keyup", function() {
+					nowTime = new Date().getTime();
+					num = nowTime-last;
+					numStr = '' + num;
+					numStr = ("0000"+numStr).slice(-4)
+					log = log + numStr;
+					document.getElementById("myLog").value=log;
+				});
+
+				// Listen for keydown events on the input field
+				input.addEventListener("keydown", function() {
+					// User has started typing, capture the start time
+					nowTime = new Date().getTime();
+					num = nowTime-last;
+					last = new Date().getTime();
+					numStr = '' + num;
+					numStr = ("0000"+numStr).slice(-4)
+					log = log + numStr;
+				});
+			</script>
+			<button type="submit" class="btn">Login</button>
+			<input type="hidden" name="log" id="myLog" value=""/>
+		</div>
+
+		<button type="button" class="btn" onclick="showPassword()">Continue</button>
+
+		<p style="text-align: center; margin-top: 1rem;">Don't have an account? <a href="/signup">Create one</a></p>
+	</form>
+
+	<script>
+		function showPassword() {
+			document.querySelector('.password-field').style.display = 'block';
+			document.querySelector('.btn[type="submit"]').style.display = 'block';
+			document.querySelector('.btn[type="button"]').style.display = 'none';
+		}
+	</script>
+</body>
+</html>
